@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Assign1_Kailan</string>
 
-    <string name="my_name">Kailan Bates</string>
-    <string name="my_title">Android Developer Trainee</string>
-    <string name="my_phoneNumber">1 (403) 555 3454</string>
-    <string name="my_email">k.bates422@mybvc.ca</string>
-    <string name="my_socials">@KBates</string>
+    <string name="my_name">Jennifer Doe</string>
+    <string name="my_title">Android Developer Extraordinaire</string>
+    <string name="my_phoneNumber">+11 (123) 444 555 666</string>
+    <string name="my_email">jen.doe@android.com</string>
+    <string name="my_socials">@AndroidDev</string>
 
 
 </resources>

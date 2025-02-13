@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.animation.VectorConverter
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,14 +41,15 @@ import androidx.compose.ui.unit.sp
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Email
+import androidx.compose.material.icons.rounded.Phone
+import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material3.Icon
 
 
 
-import androidx.compose.material.icons.rounded.Menu
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Phone
-import androidx.compose.material.icons.rounded.Share
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 
 
 class MainActivity : ComponentActivity() {
@@ -54,12 +58,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Assign1_KailanTheme {
-
                 BusinessCardApp(modifier = Modifier)
 
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    BusinessCardApp(modifier = Modifier.padding(innerPadding))
-//                }
             }
         }
     }
@@ -68,15 +68,27 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BusinessCardApp(modifier: Modifier = Modifier) {
 
+
     Column(
-        verticalArrangement = Arrangement.SpaceAround,
+        verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.background(color = Color.Cyan)
+        modifier = modifier.background(color = colorResource(R.color.background))
             .fillMaxSize()
     ){
         NameAndTitleSection(modifier = modifier)
         PersonalDetailsSection(modifier = modifier)
+
+
+        Box(
+            modifier = Modifier
+                .height(25.dp)
+                .fillMaxWidth()
+                .background(color = Color.Black)
+
+        )
     }
+
+
 
 }
 
@@ -85,12 +97,12 @@ fun NameAndTitleSection(modifier: Modifier){
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(top = 140.dp)
+        modifier = Modifier.padding(top = 300.dp)
     ){
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.size(110.dp)
-                .background(color =  Color.Black)
+                .background(color = colorResource(R.color.android_icon_background))
 
         ) {
             Image(
@@ -107,13 +119,15 @@ fun NameAndTitleSection(modifier: Modifier){
 
         Text(
             text = stringResource(R.string.my_name),
-            fontSize = 48.sp,
-            style = MaterialTheme.typography.titleLarge
+            fontWeight = FontWeight(350),
+            fontSize = 48.sp
         )
         Text(
             text = stringResource(R.string.my_title),
             fontSize = 16.sp,
-            style = MaterialTheme.typography.titleLarge
+            fontWeight = FontWeight(750),
+            color = colorResource(R.color.icons_and_text)
+
         )
     }
 
@@ -122,62 +136,40 @@ fun NameAndTitleSection(modifier: Modifier){
 @Composable
 fun PersonalDetailsSection(modifier: Modifier) {
     Column(
-        //horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround
+        verticalArrangement = Arrangement.SpaceAround,
+        modifier = Modifier.padding(top = 220.dp)
     ){
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-
-        ){
-            Icon(
-                imageVector = Icons.Rounded.Phone,
-                contentDescription = "Phone Icon",
-                tint = Color.Magenta,
-                modifier = Modifier.padding(end = 10.dp)
-
-            )
-            Text(
-                text = stringResource(R.string.my_phoneNumber),
-                fontSize = 16.sp,
-                style = MaterialTheme.typography.titleLarge
-            )
-        }
-        Row(
-            modifier = Modifier.padding(top = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            Icon(
-                imageVector = Icons.Rounded.Share,
-                contentDescription = "Share Icon",
-                tint = Color.Magenta,
-                modifier = Modifier.padding(end = 10.dp)
-            )
-            Text(
-                text = stringResource(R.string.my_socials),
-                fontSize = 16.sp,
-                style = MaterialTheme.typography.titleLarge
-            )
-        }
-        Row(
-            modifier = Modifier.padding(top = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            Icon(
-                imageVector = Icons.Rounded.Email,
-                contentDescription = "Home Icon",
-                tint = Color.Magenta,
-                modifier = Modifier.padding(end = 10.dp)
-            )
-            Text(
-                text = stringResource(R.string.my_email),
-                fontSize = 16.sp,
-                style = MaterialTheme.typography.titleLarge
-            )
-        }
+        IconAndText(R.string.my_phoneNumber, Icons.Rounded.Phone, "Phone Icon")
+        IconAndText(R.string.my_socials, Icons.Rounded.Share, "Share Icon")
+        IconAndText(R.string.my_email, Icons.Rounded.Email, "Email Icon")
 
     }
 }
 
+
+@Composable
+fun IconAndText(
+        @StringRes stringResourceId: Int,
+        imageVector: ImageVector,
+        iconDescription: String
+){
+    Row(
+        modifier = Modifier.padding(top = 10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Icon(
+            imageVector = imageVector,
+            contentDescription = iconDescription,
+            tint = colorResource(R.color.icons_and_text),
+            modifier = Modifier.padding(end = 20.dp)
+        )
+        Text(
+            text = stringResource(stringResourceId),
+            fontSize = 16.sp,
+            style = MaterialTheme.typography.titleLarge
+        )
+    }
+}
 
 
 @Preview(showBackground = true)
