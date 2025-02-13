@@ -1,18 +1,17 @@
-# Ignore Gradle files 
-.gradle/ 
-build/ 
-**/build/ 
-**/out/ 
-local.properties 
+# Gradle files
+.gradle/
+build/
 
-# Ignore IntelliJ / Android Studio settings 
-.idea/ 
-*.iml 
-/.cxx 
-/.externalNativeBuild 
-.vscode/ 
-captures/ 
+# Android Studio
+.idea/
 
-# Ignore dependency caches 
-**/.gradle 
-**/node_modules
+# Kotlin files
+*.kotlin/
+
+# VS related files
+.vs/
+
+# Miscellaneous
+*.iml
+*.log
+local.properties
